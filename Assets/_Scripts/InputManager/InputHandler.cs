@@ -40,10 +40,8 @@ namespace LP.FDG.InputManager
         {
             if (Input.GetMouseButtonDown(0))
             {
-                if (EventSystem.current.IsPointerOverGameObject())
-                {
-                    return;
-                }
+                // Prevent clicking on HUD
+                if (EventSystem.current.IsPointerOverGameObject()) return;
 
                 mousePos = Input.mousePosition;
                 //create a ray 
@@ -111,6 +109,10 @@ namespace LP.FDG.InputManager
                     }
                 }
             }
+            else if (Input.GetMouseButtonDown(1) && selectedBuilding != null)
+      {
+        selectedBuilding.gameObject.GetComponent<Interactables.IBuilding>().SetSpawnMarkerLocation();
+      }
         }
 
         private void DeselectUnits()

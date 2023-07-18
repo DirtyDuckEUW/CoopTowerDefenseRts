@@ -125,11 +125,13 @@ namespace LP.FDG.UI.HUD
 
         public void SpawnObject()
         {
-            GameObject spawnedObject = Instantiate(spawnOrder[0], new Vector3(spawnPoint.transform.position.x - 4,
-                spawnPoint.transform.position.y, spawnPoint.transform.position.z), Quaternion.identity);
+            GameObject spawnedObject = Instantiate(spawnOrder[0], new Vector3(spawnPoint.transform.parent.position.x,
+                spawnPoint.transform.parent.position.y, spawnPoint.transform.parent.position.z), Quaternion.identity);
+      Units.Player.PlayerUnit pu = spawnedObject.GetComponent<Units.Player.PlayerUnit>();
+      Debug.Log($"Spawned Unit Type is: {pu.name}!");
 
-            spawnedObject.GetComponent<Units.Player.PlayerUnit>().baseStats.health = 50;
-
+      pu.baseStats.health = 50;
+      pu.MoveUnit((spawnPoint.transform.position));
         }
     }
 }
