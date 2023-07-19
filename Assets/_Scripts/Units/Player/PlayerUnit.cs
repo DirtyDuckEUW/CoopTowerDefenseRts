@@ -5,24 +5,91 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-namespace LP.FDG.Units.Player
+namespace Units.Player
 {
-    [RequireComponent(typeof(NavMeshAgent))]
-    public class PlayerUnit : MonoBehaviour
+  [RequireComponent(typeof(NavMeshAgent))]
+  public class PlayerUnit : MonoBehaviour
+  {
+    private NavMeshAgent navAgent;
+
+    public UnitStatTypes.Base baseStats;
+
+    private Collider[] rangeColliders;
+
+    private Transform aggroTarget;
+
+    private UnitStatDisplay aggroUnit;
+
+    private bool hasAggro = false;
+
+    private float distance;
+
+    public float atkCooldown;
+
+    private void OnEnable()
     {
-        private NavMeshAgent navAgent;
-
-        public UnitStatTypes.Base baseStats;
-
-        private void OnEnable()
-        {
-            navAgent = GetComponent<NavMeshAgent>();
-        }
-
-        public void MoveUnit(Vector3 _destination)
-        {
-            navAgent.SetDestination(_destination);
-        }
+      navAgent = GetComponent<NavMeshAgent>();
     }
+
+    private void Update()
+    {
+      atkCooldown -= Time.deltaTime;
+      if (!hasAggro)
+      {
+        CheckForEnemyTargets();
+      }
+      else
+      {
+        MoveToAggroTarget();
+        Attack();
+      }
+    }
+
+    public void MoveUnit(Vector3 _destination)
+    {
+      navAgent.SetDestination(_destination);
+    }
+
+    private void CheckForEnemyTargets()
+    {
+      rangeColliders = Physics.OverlapSphere(transform.position, baseStats.aggroRange, UnitHandler.instance.eUnitLayer);
+
+      for (int iIndex = 0; iIndex < rangeColliders.Length;)
+      {
+        aggroTarget = rangeColliders[iIndex].gameObject.transform;
+        aggroUnit = aggroTarget.gameObject.GetComponentInChildren<UnitStatDisplay>();
+        hasAggro = true;
+        break;
+      }
+    }
+
+    private void Attack()
+    {
+      if (atkCooldown <= 0 && distance <= baseStats.atkRange + 1)
+      {
+        aggroUnit.TakeDamage(baseStats.attack);
+        atkCooldown = baseStats.atkSpeed;
+      }
+    }
+
+    private void MoveToAggroTarget()
+    {
+      if (aggroTarget == null)
+      {
+        navAgent.SetDestination(transform.position);
+        hasAggro = false;
+      }
+      else
+      {
+        distance = Vector3.Distance(aggroTarget.position, transform.position);
+        navAgent.stoppingDistance = (baseStats.atkRange + 1);
+
+        if (distance <= baseStats.aggroRange)
+        {
+          navAgent.SetDestination(aggroTarget.position);
+        }
+      }
+    }
+  }
 }
 

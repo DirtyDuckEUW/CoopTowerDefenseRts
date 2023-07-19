@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace LP.FDG.Units
+namespace Units
 {
     public class UnitStatTypes : ScriptableObject
     {

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-using LP.FDG.Player;
+using Player;
 
-namespace LP.FDG.Units
+namespace Units
 {
     public class UnitHandler : MonoBehaviour
     {

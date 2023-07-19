@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace LP.FDG.UI.HUD
+namespace UI.HUD
 {
     [CreateAssetMenu(fileName = "NewPlayerActions", menuName = "PlayerActions")]
     public class PlayerActions : ScriptableObject

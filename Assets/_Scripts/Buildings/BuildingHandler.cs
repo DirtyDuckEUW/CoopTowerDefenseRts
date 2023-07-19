@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace LP.FDG.Buildings
+namespace Buildings
 {
     public class BuildingHandler : MonoBehaviour
     {
@@ -19,7 +19,7 @@ namespace LP.FDG.Buildings
             BasicBuilding building;
             switch (type)
             {
-                case "barrak":
+                case "barrack":
                     building = barraks;
                     break;
                 default:

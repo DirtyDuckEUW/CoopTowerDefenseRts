@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace LP.FDG.Buildings
+namespace Buildings
 {
     [CreateAssetMenu(fileName = "Building", menuName = "New Building/Basic")]
     public class BasicBuilding : ScriptableObject

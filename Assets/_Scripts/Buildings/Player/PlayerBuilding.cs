@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace LP.FDG.Buildings.Player
+namespace Buildings.Player
 {
     public class PlayerBuilding : MonoBehaviour
     {

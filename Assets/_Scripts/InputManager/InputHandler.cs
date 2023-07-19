@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using LP.FDG.Units.Player;
+using Units.Player;
 using UnityEngine.EventSystems;
 
-namespace LP.FDG.InputManager
+namespace InputManager
 {
     public class InputHandler : MonoBehaviour
     {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace LP.FDG.Interactables
+namespace Interactables
 {
     public class IBuilding : Interactable
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace LP.FDG.Units
+namespace Units
 {
     [CreateAssetMenu(fileName = "New Unit", menuName = "New Unit/Basic")]
     public class BasicUnit : ScriptableObject

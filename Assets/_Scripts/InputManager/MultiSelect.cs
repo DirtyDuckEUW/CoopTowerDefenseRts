@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace LP.FDG.InputManager
+namespace InputManager
 {
     public static class MultiSelect
     {
